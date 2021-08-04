@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+
+import sys
+import json
+from github import *
+from build_scripts import *
+from common import *
+
+if __name__ == '__main__':
+    print("Triggered push event for mdcore-master")
+    #Read the JSON Payload in. This came from the caller
+    with open(sys.argv[1], 'r') as jsp:
+        payload = json.loads(jsp.read())
+    print("Payload: " + payload.__str__())
+    # We know a new push was just sent to the master branch, clone it.
+    clone_repo(payload)
+    # Now attempt to build and install it to this system
+    build_install_project(payload)
