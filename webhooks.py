@@ -18,14 +18,12 @@ application = Flask(__name__)
 
 def check_ip(ip_address) -> bool:
     whitelist = requests.get('https://api.github.com/meta').json()['hooks']
-    whitelist.append("34.74.90.64/28") #gitlab ip range
-    whitelist.append("34.74.226.0/24") #second gitlab ip range
     for valid_ip in whitelist:
         if ip_address in ip_network(valid_ip):
             return True
     return False
 
-@application.route('/github', methods=['GET', 'POST'])
+@application.route('/', methods=['GET', 'POST'])
 def index():
     """
     Main WSGI application entry.

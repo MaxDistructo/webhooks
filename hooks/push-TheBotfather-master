@@ -8,8 +8,8 @@ from common import *
 from logger import Logger
 
 if __name__ == '__main__':
-    logger = Logger("omega-cpp")
-    logger.info("Triggered push event for omega-cpp:master")
+    logger = Logger("TheBotfather")
+    logger.info("Triggered push event for TheBotfather:master")
     #Read the JSON Payload in. This came from the caller
     with open(sys.argv[1], 'r') as jsp:
         payload = json.loads(jsp.read())
